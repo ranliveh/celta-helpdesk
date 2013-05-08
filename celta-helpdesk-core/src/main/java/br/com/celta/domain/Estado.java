@@ -3,6 +3,8 @@ package br.com.celta.domain;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,19 +18,23 @@ import javax.persistence.Table;
 public class Estado implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    // *********************** PROPERTIES *********************************** //
+    public static final String PROPERTY_NOME = "nome";
+    public static final String PROPERTY_SIGLA = "sigla";
+    // ********************************************************************** //
     @Id
-    @Column(name = "\"EstadoPK\"", nullable = false, insertable = false, updatable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "\"EstadoPK\"", nullable = false, updatable = false, unique = true)
     private Integer estadoPK;
-    @Column(name = "\"Nome\"", nullable = false)
+    @Column(name = "\"Nome\"", nullable = false, length = 30)
     private String nome;
-    @Column(name = "\"Sigla\"", nullable = false)
+    @Column(name = "\"Sigla\"", nullable = false, length = 2)
     private String sigla;
 
     public Estado() {
     }
 
-    public Estado(Integer estadoPK, String nome, String sigla) {
-        this.estadoPK = estadoPK;
+    public Estado(String nome, String sigla) {
         this.nome = nome;
         this.sigla = sigla;
     }

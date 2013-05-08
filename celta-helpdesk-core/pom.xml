@@ -16,9 +16,22 @@
     <parent>
         <groupId>br.gov.frameworkdemoiselle</groupId>
         <artifactId>demoiselle-minimal-parent</artifactId>
-        <version>2.3.1</version>
+        <version>2.3.3</version>
     </parent>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <showDeprecation>true</showDeprecation>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <dependencies>
         <dependency>
             <groupId>br.gov.frameworkdemoiselle.component</groupId>
@@ -34,18 +47,21 @@
         <dependency>
             <groupId>br.gov.frameworkdemoiselle</groupId>
             <artifactId>demoiselle-jpa</artifactId>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
         </dependency>
         <dependency>
-            <groupId>hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.2-1002.jdbc4</version>
         </dependency>
         <dependency>
-            <groupId>br.gov.frameworkdemoiselle</groupId>
-            <artifactId>demoiselle-jpa</artifactId>
+            <groupId>hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

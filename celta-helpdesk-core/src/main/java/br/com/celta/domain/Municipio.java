@@ -3,8 +3,9 @@ package br.com.celta.domain;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -17,10 +18,14 @@ import javax.persistence.Table;
 public class Municipio implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    // *********************** PROPERTIES *********************************** //
+    public static final String PROPERTY_NOME = "nome";
+    // ********************************************************************** //
     @Id
-    @Column(name = "\"MunipioPK\"", nullable = false, insertable = false, updatable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "\"MunipioPK\"", nullable = false, updatable = false, unique = true)
     private Integer municipioPK;
-    @Column(name = "\"Nome\"", nullable = false)
+    @Column(name = "\"Nome\"", nullable = false, length = 30)
     private String nome;
 //    @OneToOne
 //    @Column(name = "\"EstadoFK\"", nullable = false)
@@ -29,18 +34,15 @@ public class Municipio implements Serializable {
     public Municipio() {
     }
 
-    public Municipio(Integer municipioPK, String nome) {
-        this.municipioPK = municipioPK;
+    public Municipio(String nome) {
         this.nome = nome;
     }
 
-    
 //    public Municipio(Integer municipioPK, String nome, Estado estadoFK) {
 //        this.municipioPK = municipioPK;
 //        this.nome = nome;
 //        this.estadoFK = estadoFK;
 //    }
-
     public Integer getMunicipioPK() {
         return municipioPK;
     }
@@ -48,8 +50,7 @@ public class Municipio implements Serializable {
     public String getNome() {
         return nome;
     }
-
-//    public Estado getEstadoFK() {
-//        return estadoFK;
-//    }
+    //    public Estado getEstadoFK() {
+    //    }
+    //    }
 }

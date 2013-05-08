@@ -1,33 +1,33 @@
-package br.com.celta;
+package br.com.celta.domain;
 
 import br.com.celta.business.EstadoBC;
-import br.com.celta.domain.Estado;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 import javax.inject.Inject;
-import org.junit.Assert;
+import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * PersistenceTest.class
+ * EstadoTest.class
  *
  * @author Ranlive Hrysyk
  */
 @RunWith(DemoiselleRunner.class)
-public class PersistenceTest {
+public class EstadoTest {
 
     private static final long serialVersionUID = 1L;
     @Inject
     private EstadoBC estadoBC;
 
     @Test
-    public void testPersistence() {
+    public void notNullBC() {
         Assert.assertNotNull(estadoBC);
+    }
 
-        Estado estado = new Estado(1, "Estado Teste", "ET");
-//        Municipio municipio = new Municipio(1, "Municipio Teste");
-
+    @Test
+    public void inserirComSucesso() {
+        Estado estado = new Estado("Estado Teste", "ET");
         estadoBC.insert(estado);
-        Assert.assertNotNull(estadoBC.load(1));
+        Assert.assertTrue(estadoBC.findAll().contains(estado));
     }
 }
