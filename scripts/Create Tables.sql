@@ -21,6 +21,6 @@ create table "Municipio"
   "Descricao" character(50) not null, 
   "EstadoID" integer not null, 
   constraint "MunicipioPK" primary key ("MunicipioID" ),
-  constraint "MunicipioEstadoFK" foreign key ("EstadoID") references "Estado" ("EstadoID") match on update no action on delete cascade
+  constraint "MunicipioEstadoFK" foreign key ("EstadoID") references "Estado" ("EstadoID") match simple on update no action on delete cascade
 );
 -----------------------------------------------------------------------
