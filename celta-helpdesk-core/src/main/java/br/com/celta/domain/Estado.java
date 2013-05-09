@@ -19,35 +19,44 @@ public class Estado implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // *********************** PROPERTIES *********************************** //
-    public static final String PROPERTY_NOME = "nome";
+    public static final String PROPERTY_ID = "estadoID";
+    public static final String PROPERTY_IBGE = "codigoIBGE";
     public static final String PROPERTY_SIGLA = "sigla";
+    public static final String PROPERTY_DESCRICAO = "descricao";    
     // ********************************************************************** //
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "\"EstadoPK\"", nullable = false, updatable = false, unique = true)
-    private Integer estadoPK;
-    @Column(name = "\"Nome\"", nullable = false, length = 30)
-    private String nome;
+    @Column(name = "\"EstadoID\"", nullable = false, updatable = false, unique = true)
+    private Integer estadoID;
+    @Column(name = "\"IBGE\"", nullable = false, length = 2)
+    private String codigoIBGE;
     @Column(name = "\"Sigla\"", nullable = false, length = 2)
     private String sigla;
+    @Column(name = "\"Descricao\"", nullable = false, length = 30)
+    private String descricao;
 
     public Estado() {
     }
 
-    public Estado(String nome, String sigla) {
-        this.nome = nome;
+    public Estado(Integer estadoID, String codigoIBGE, String sigla, String descricao) {
+        this.estadoID = estadoID;
+        this.codigoIBGE = codigoIBGE;
         this.sigla = sigla;
+        this.descricao = descricao;
     }
 
-    public Integer getEstadoPK() {
-        return estadoPK;
+    public Integer getEstadoID() {
+        return estadoID;
     }
 
-    public String getNome() {
-        return nome;
+    public String getCodigoIBGE() {
+        return codigoIBGE;
     }
 
     public String getSigla() {
         return sigla;
+    }
+
+    public String getDescricao() {
+        return descricao;
     }
 }

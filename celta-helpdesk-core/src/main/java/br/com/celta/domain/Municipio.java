@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,38 +20,44 @@ public class Municipio implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // *********************** PROPERTIES *********************************** //
-    public static final String PROPERTY_NOME = "nome";
+    public static final String PROPERTY_ID = "municipioID";
+    public static final String PROPERTY_IBGE = "codigoIBGE";
+    public static final String PROPERTY_DESCRICAO= "descricao";
     // ********************************************************************** //
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "\"MunipioPK\"", nullable = false, updatable = false, unique = true)
-    private Integer municipioPK;
-    @Column(name = "\"Nome\"", nullable = false, length = 30)
-    private String nome;
-//    @OneToOne
-//    @Column(name = "\"EstadoFK\"", nullable = false)
-//    private Estado estadoFK;
+    @Column(name = "\"MunipioID\"", nullable = false, updatable = false, unique = true)
+    private Integer municipioID;
+    @Column(name = "\"IBGE\"", nullable = false, length = 7)
+    private String codigoIBGE;
+    @Column(name = "\"Descricao\"", nullable = false, length = 50)
+    private String descricao;
+    @OneToOne(mappedBy = "estadoID")
+    @Column(name = "\"MunicipioEstadoFK\"", nullable = false)
+    private Estado estadoFK;
 
     public Municipio() {
     }
 
-    public Municipio(String nome) {
-        this.nome = nome;
+    public Municipio(Integer municipioID, String codigoIBGE, String descricao, Estado estadoFK) {
+        this.municipioID = municipioID;
+        this.codigoIBGE = codigoIBGE;
+        this.descricao = descricao;
+        this.estadoFK = estadoFK;
     }
 
-//    public Municipio(Integer municipioPK, String nome, Estado estadoFK) {
-//        this.municipioPK = municipioPK;
-//        this.nome = nome;
-//        this.estadoFK = estadoFK;
-//    }
-    public Integer getMunicipioPK() {
-        return municipioPK;
+    public Integer getMunicipioID() {
+        return municipioID;
     }
 
-    public String getNome() {
-        return nome;
+    public String getCodigoIBGE() {
+        return codigoIBGE;
     }
-    //    public Estado getEstadoFK() {
-    //    }
-    //    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public Estado getEstado() {
+        return estadoFK;
+    }
 }
